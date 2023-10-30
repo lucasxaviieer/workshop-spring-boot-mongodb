@@ -30,6 +30,14 @@ public class UserService {
 		return repository.insert(obj);
 	}
 	
+	public void delete(String id) {
+		if(repository.existsById(id)) {
+			repository.deleteById(id);
+		} else {
+			throw new ObjectNotFoundException("Objeto não encontrado");
+		}
+	}
+	
 	public User fromDTO(UserDTO objDto) {
 		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
